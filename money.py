@@ -76,7 +76,8 @@ class Money:
         currencies, raise a DifferentCurrencyError.
         """
         if self.currency.code == other.currency.code:
-            return self.amount + other.amount
+            self.amount = self.amount + other.amount
+            return self
         else:
             raise DifferentCurrencyError()
 
@@ -86,7 +87,8 @@ class Money:
         currencies, raise a DifferentCurrencyError.
         """
         if self.currency.code == other.currency.code:
-            return self.amount - other.amount
+            self.amount = self.amount - other.amount
+            return self
         else:
             raise DifferentCurrencyError()
 
@@ -94,10 +96,12 @@ class Money:
         """
         Multiply a money object by a number to get a new money object.
         """
-        return self.amount * multiplier
+        self.amount = self.amount * multiplier
+        return self
 
     def div(self, divisor):
         """
         Divide a money object by a number to get a new money object.
         """
-        return self.amount / divisor
+        self.amount = self.amount / divisor
+        return self
